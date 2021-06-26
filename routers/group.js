@@ -122,6 +122,28 @@ const getAllGroups = router.get('/', verifyToken, (req, res, next) => {
 })
 
 
+const getOne = router.get('/:id', verifyToken, (req, res, next) => {
+
+
+    jwt.verify(req.token, 'secretkey', async (err, authData) => {
+        if (err) {
+            res.status(403)
+            res.json({
+                message: "Authentication failed try to login "
+            })
+
+        } else {
+            currentGroup = await GModel.findById(req.params.id).populate("tasks").populate('leader').populate('member').exec()
+            res.status(200);
+            res.json({
+                Groups: currentGroup,
+            })
+
+        }
+
+    })
+})
+
 
 
 function verifyToken(req, res, next) {
@@ -155,5 +177,6 @@ module.exports = {
     getAllGroups,
     CreateGroup,
     DeleteGroup,
-    UpdateGroup
+    UpdateGroup,
+    getOne
 }

@@ -24,6 +24,7 @@ app.use('/auth',auth.singup);
 app.use('/auth',auth.signIn);
 app.use('/auth',auth.getUser);
 app.use('/auth',auth.getAllUsers);
+app.use('/auth',auth.UpdateUser);
 //Tasks Routers 
 app.use('/tasks',task.getAllTask);
 app.use('/tasks',task.CreateTask);
@@ -34,6 +35,7 @@ app.use('/Group',Group.getAllGroups);
 app.use('/Group',Group.CreateGroup);
 app.use('/Group',Group.UpdateGroup);
 app.use('/Group',Group.DeleteGroup);
+app.use('/Group',Group.getOne);
 //Meet Routers 
 app.use('/meet',meet.getAllMeet);
 app.use('/meet',meet.CreateMeet);

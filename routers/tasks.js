@@ -84,7 +84,7 @@ const getAllTask = router.get('/', verifyToken, (req, res, next) => {
             })
 
         } else {
-            await TasksModel.find().sort().populate('tasks')
+            await TasksModel.find().sort().populate('member')
                 .then((data) => {
                     res.status(200);
                     res.json({

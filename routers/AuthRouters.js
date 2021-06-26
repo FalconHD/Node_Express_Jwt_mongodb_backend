@@ -32,6 +32,29 @@ const singup = router.post('/signup', async (req, res) => {
 })
 
 
+const UpdateUser = router.put('/Update/:id', verifyToken, async (req, res, next) => {
+    jwt.verify(req.token, 'secretkey', async (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                message: "Authentication failed try to login "
+            })
+
+        } else {
+            UserModel.updateOne({ _id: req.params.id }, req.body, { new: true }, (err, newRoomInfo) => {
+                if (err) next(err)
+                res.status(200)
+                res.json({
+                    message: "✔ update user  succeeded ✔"
+                })
+            })
+        }
+
+    })
+
+
+})
+
+
 const signIn = router.post('/signin', async (req, res, next) => {
     console.log(req.body);
     const User = await UserModel.findOne({ email: req.body.email });
@@ -151,5 +174,6 @@ module.exports = {
     singup,
     signIn,
     getAllUsers,
-    getUser
+    getUser,
+    UpdateUser
 }

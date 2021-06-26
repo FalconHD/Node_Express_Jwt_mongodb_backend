@@ -33,6 +33,9 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    img: {
+        type: String,
+    },
     groupe: [{
         type: Schema.Types.ObjectId,
         ref: "groupe"

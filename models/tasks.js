@@ -10,22 +10,26 @@ const Schema = mongoose.Schema;
 
 
 const TasksSchema = new Schema({
-    task : {
-        type : String,
-        required : true
-    } ,
-    
-    delivery_datetime : {
-        type : Date,
-        required : true
-    }
-    
-}, { timestamps: true } );
+    task: {
+        type: String,
+        required: true
+    },
+
+    delivery_datetime: {
+        type: Date,
+    },
+    member: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
+
+
+}, { timestamps: true });
 
 
 
 
 TasksSchema.plugin(uniqueValidator);
-const TasksModel = model('Task' , TasksSchema);
+const TasksModel = model('Task', TasksSchema);
 
 module.exports = TasksModel;
